@@ -1,16 +1,17 @@
 import "./App.css";
+import type { DummyJson } from "./DummyJson";
 import { Quote } from "./Quote";
-import { useQuotes } from "./useQuotes";
+import { useApi } from "./useApi";
 
 function App() {
-  const data = useQuotes();
+  const res = useApi<DummyJson>(`https://dummyjson.com`, "quotes");
 
-  if (data === undefined) {
+  if (res === undefined) {
     return <div>Loading…</div>;
   }
   return (
     <>
-      {data.quotes.map((quote) => (
+      {res.quotes.map((quote) => (
         <Quote key={quote.id} quote={quote} />
       ))}
     </>
