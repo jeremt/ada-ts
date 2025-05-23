@@ -1,5 +1,6 @@
 import {getQuote, getQuotes} from "./getQuotes";
 import "./style.css";
+import {getRecipes} from "./getRecipes.ts";
 
 const resultElement = document.querySelector("#result");
 const quoteIdInput = document.querySelector<HTMLInputElement>("#quoteIdInput");
@@ -24,4 +25,13 @@ document.querySelector("#fetchByIdBtn")?.addEventListener("click", async () => {
       resultElement.innerHTML = "Please enter a valid quote ID";
     }
   }
+});
+//Bouton Afficher les recettes
+document.querySelector("#fetchAllRecipesBtn")?.addEventListener("click", async () => {
+    const recipes = await getRecipes();
+    if(resultElement){
+      resultElement.innerHTML = JSON.stringify(recipes, null, 2);
+
+    }
+
 });
