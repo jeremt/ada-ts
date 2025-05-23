@@ -1,38 +1,40 @@
-class Athlete {
-  private _goldMedals = ""; // ajouter private permet d'empécher l'accès en dehors de la classe
-  constructor(
-    // ajouter public ou private dans le constructeur ajoute les champs automatiquement
-    private _name: string,
-    private _country: string,
-    private _sport: string,
-    numberOfMedals: number
-  ) {
-    this._goldMedals = "🥇".repeat(numberOfMedals);
-  }
-
-  presentation() {
-    console.log(
-      `${this._name} (${this._sport}, 🥇 ${this._goldMedals.length}, 📍 ${this._country})`
-    );
-  }
-
-  winGold() {
-    this._goldMedals += "🥇";
-  }
-
-  get goldMedals() {
-    return this._goldMedals;
-  }
+interface Label {
+  title: string;
+  color: string;
 }
 
-const yuna = new Athlete("Yuna Kim", "Corée du Sud", "Patinage artistique", 1);
-const nadia = new Athlete("Nadia Comăneci", "Roumanie", "Gymnastique", 5);
-const marit = new Athlete("Marit Bjørgen", "Norvège", "Ski de fond", 8);
-const valentina = new Athlete("Valentina Vezzali", "Escrime", "Escrime", 6);
+interface Issue {
+  title: string;
+  description?: string;
+  label?: Label;
+}
 
-yuna.presentation();
-nadia.winGold();
-nadia.presentation();
-marit.winGold();
-console.log(marit.goldMedals);
-marit._goldMedals = "💩"; // erreur car le champs est privé !
+// Avec le ? on n'est pas obligé de préciser description ou label à chaque fois
+const issues: Issue[] = [
+  {
+    title: "Finish landing page",
+    description: "Still a lot of work...",
+    label: { color: "blue", title: "feature" },
+  },
+  {
+    title: "Handle responsive",
+    label: { color: "cyan", title: "improvement" },
+  },
+  { title: "Fix footer links" },
+];
+
+// TODO: affiche toutes les issues, avec leur label si présent
+// {
+//     title: "Finish landing page",
+//     description: "Still a lot of work...",
+//     label: { color: "blue", title: "feature" },
+// }
+// affiche :
+// # [feature:blue] Finish landing page
+// Still a lot of work...
+//
+// { title: "Fix footer links" },
+// affiche :
+// # Fix footer links
+//
+// (attention aux valeurs optionnelles !)
