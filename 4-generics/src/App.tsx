@@ -1,9 +1,11 @@
 import "./App.css";
 import { Quote } from "./Quote";
-import { useQuotes } from "./useQuotes";
+import type { QuotesDetails } from "./types";
+import { useApi } from "./useQuotes";
 
 function App() {
-  const data = useQuotes();
+  const data= useApi<QuotesDetails>() 
+  //const data = useQuotes();
 
   if (data === undefined) {
     return <div>Loading…</div>;
