@@ -1,20 +1,19 @@
 import "./App.css";
-import { Quote } from "./Quote";
-import type { QuotesDetails } from "./types";
+import { Recipe } from "./Recipe";
+import type { RecipeDetails } from "./types";
 import { useApi } from "./useQuotes";
 
 function App() {
-  const data= useApi<QuotesDetails>() 
-  //const data = useQuotes();
+  const data= useApi<RecipeDetails>("recipes");
 
   if (data === undefined) {
     return <div>Loading…</div>;
   }
   return (
     <>
-      {data.quotes.map((quote) => (
-        <Quote key={quote.id} quote={quote} />
-      ))}
+      {data.recipes.map((recipe) => (
+      <Recipe key={recipe.id} recipe={recipe} />
+    ))}
     </>
   );
 }
