@@ -12,7 +12,7 @@ export const useQuotes = () => {
   };
 
   useEffect(() => {
-    loadQuotes();
+   void loadQuotes();
   },[]);
 
   return quotes;
