@@ -7,3 +7,4 @@
 
 - Teste avec une donnée plus complexe
 - Utilise une bibliothèque de validation comme arktype ou zod
+- UNION pour mealType
