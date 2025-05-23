@@ -1,19 +1,47 @@
 import "./App.css";
-import { Quote } from "./Quote";
-import { useQuotes } from "./useQuotes";
+import {DisplayItem, Quote, type QuoteType, Recipe, type RecipeType} from "./ItemType.tsx";
+import {useItems} from "./useItems.ts";
+import {useState} from "react";
+
+const urls= {
+  quotes: "https://dummyjson.com/quotes",
+  recipes: "https://dummyjson.com/recipes"
+};
+
 
 function App() {
-  const data = useQuotes();
+  const [selectedUrl, setSelectedUrl]=useState(urls.quotes)
+  const items = selectedUrl === urls.quotes
+      ? useItems<QuoteType>(selectedUrl)
+      : useItems<RecipeType>(selectedUrl);
 
-  if (data === undefined) {
+  if (!items) {
     return <div>Loading…</div>;
   }
+  const renderItem = (item: QuoteType | RecipeType) => {
+    if (selectedUrl === urls.quotes) {
+      return <Quote quote={item as QuoteType} />;
+    }
+    if (selectedUrl === urls.recipes) {
+      return <Recipe recipe={item as RecipeType} />;
+    }
+    return null;
+  };
+
   return (
-    <>
-      {data.quotes.map((quote) => (
-        <Quote key={quote.id} quote={quote} />
-      ))}
-    </>
+      <>
+        <select
+            onChange={(e) => setSelectedUrl(e.target.value)}
+            value={selectedUrl}
+        >
+          <option value={urls.quotes}>Quotes</option>
+          <option value={urls.recipes}>Recipes</option>
+        </select>
+
+        {items.map((item) => (
+            <DisplayItem key={item.id} item={item} render={renderItem} />
+        ))}
+      </>
   );
 }
 

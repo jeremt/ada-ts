@@ -38,3 +38,17 @@ const issues: Issue[] = [
 // # Fix footer links
 //
 // (attention aux valeurs optionnelles !)
+
+for (const issue of issues) {
+  if (issue.label){
+    console.log(`# [${issue.label.title}:${issue.label.color}] ${issue.title}`);
+  } else {
+    console.log(`# ${issue.title}`);
+  }
+  if (issue.description){
+    console.log(issue.description);
+  }
+  console.log();
+  }
+
+

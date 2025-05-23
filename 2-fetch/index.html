@@ -9,6 +9,19 @@
   <body>
     <div id="app">
       <button id="fetchBtn">Fetch quotes</button>
+      <div style ="margin-top: 1rem">
+        <label for="quoteIdInput"></label>
+        <input type="number" id="quoteIdInput" placeholder="Enter quote ID" />
+        <button id="fetchByIdBtn">Get Quote</button>
+      </div>
+      <div>
+        <button id="fetchAllRecipesBtn">Fetch All Recipes</button>
+
+        <div style="margin-top: 1rem;">
+          <input id="recipeIdInput" type="number" placeholder="Enter recipe ID" />
+          <button id="fetchRecipeByIdBtn">Fetch Recipe by ID</button>
+        </div>
+      </div>
       <pre id="result"></pre>
     </div>
     <script type="module" src="/src/main.ts"></script>
