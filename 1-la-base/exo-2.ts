@@ -1,5 +1,5 @@
 class Athlete {
-  private _goldMedals = ""; // ajouter private permet d'empécher l'accès en dehors de la classe
+  public _goldMedals = ""; // ajouter private permet d'empécher l'accès en dehors de la classe
   constructor(
     // ajouter public ou private dans le constructeur ajoute les champs automatiquement
     private _name: string,
