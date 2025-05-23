@@ -23,6 +23,11 @@ const issues: Issue[] = [
   { title: "Fix footer links" },
 ];
 
+for (const issue of issues) {
+  if (issue.label != undefined){
+    console.log("# ["+ issue.label.title + ":"+issue.label.color + "] "+ issue.title)
+  }
+}
 // TODO: affiche toutes les issues, avec leur label si présent
 // {
 //     title: "Finish landing page",
